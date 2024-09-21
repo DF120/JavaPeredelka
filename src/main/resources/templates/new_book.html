@@ -17,7 +17,7 @@
     <blockquote class="blockquote text-center"><h1>Добавить Книгу</h1></blockquote>
     <div class="row">
         <div class="col-md-8 offset-md-4">
-            <form action="#" th:action="@{/save}" th:object="${student}" method="post">
+            <form action="#" th:action="@{/save}" th:object="${book}" method="post">
                 <table>
                     <tr>
                         <td>ID:</td>
@@ -25,34 +25,32 @@
                     </tr>
                     <tr>
                         <td>Название книги:</td>
-                        <td><input type="text" th:field="*{first}"></td>
+                        <td><input type="text" th:field="*{bookName}"></td>
                     </tr>
                     <tr>
                         <td>Издательство:</td>
-                        <td><input type="text" th:field="*{last}"></td>
-                    </tr>
-                    <tr>
-                        <td>Дата выдачи:</td>
-                        <td><input type="text" th:field="*{num}"></td>
+                        <td><input type="text" th:field="*{publisher}"></td>
                     </tr>
                     <tr>
                         <td>ФИО студента:</td>
-                        <td><input type="text" onkeyup="this.value = this.value.replace(/\.(?=.*\.)|[^\d\.-]/g, '');"
-                                   onchange="this.value = this.value.replace(/\.(?=.*\.)|[^\d\.-]/g, '');"
-                                   th:field="*{av}"></td>
+                        <td><input type="text" th:field="*{sName}"></td>
                     </tr>
-<!--                    <tr>-->
-<!--                        <td>Дата сдачи:</td>-->
-<!--                        <td><input type="text" th:field="*{num}"></td>-->
-<!--                    </tr>-->
+                    <tr>
+                        <td>Дата выдачи:</td>
+                        <td><input type="date" th:field="*{issueDate}"></td>
+                    </tr>
+                    <tr>
+                        <td>Дата сдачи:</td>
+                        <td><input type="date" th:field="*{returnDate}"></td>
+                    </tr>
                     <tr>
                         <td>
                             <button type="submit" class="btn btn-primary" data-tooggle="button" aria-pressed="false" autocomplete="off">Сохранить</button>
                         </td>
                     </tr>
                 </table>
-        </form>
-    </div>
+            </form>
+        </div>
     </div>
 </div>
 </body>

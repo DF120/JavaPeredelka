@@ -12,44 +12,38 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-public class AppController {
-
+public class BookAppController {
     @Autowired
-    private StudentService service;
+    private BookService service;
 
     @RequestMapping("/")
     public String viewHomePage(Model model, @Param("keyword") String keyword) {
-        List<Student> listStudents = service.listAll(keyword);
-        model.addAttribute("listStudents", listStudents);
+        List<Book> bookList = service.listAll(keyword);
+        model.addAttribute("bookList", bookList);
         model.addAttribute("keyword", keyword);
-        return "index";
+        return "index_book";
     }
-
     @RequestMapping("/new")
-    public String showNewStudentForm(Model model) {
-        Student student = new Student();
-        model.addAttribute("student", student);
-        return "new_student";
+    public String showNewBookForm(Model model) {
+        Book book = new Book();
+        model.addAttribute("book", book);
+        return "new_book";
     }
-
     @RequestMapping(value = "/save", method = RequestMethod.POST)
-    public String saveStudent(@ModelAttribute("student") Student student) {
-        service.save(student);
+    public String saveBook(@ModelAttribute("book") Book book) {
+        service.save(book);
         return "redirect:/";
     }
-
     @RequestMapping("/edit/{id}")
-    public ModelAndView showEditStudentForm(@PathVariable(name = "id") Long id) {
-        ModelAndView mav = new ModelAndView("edit_student");
-        Student student = service.get(id);
-        mav.addObject("student", student);
+    public ModelAndView showEditBookForm(@PathVariable(name = "id") Long id) {
+        ModelAndView mav = new ModelAndView("edit_book");
+        Book book = service.get(id);
+        mav.addObject("book", book);
         return mav;
     }
-
     @RequestMapping("/delete/{id}")
-    public String deleteStudent(@PathVariable(name = "id") Long id) {
+    public String deleteBook(@PathVariable(name = "id") Long id) {
         service.delete(id);
         return "redirect:/";
     }
 }
-
