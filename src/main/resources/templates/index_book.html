@@ -19,10 +19,6 @@
             margin: auto
         }
 
-        .container {
-
-        }
-
         .mt-5 {
             margin: 0 auto !important;
         }
@@ -61,7 +57,7 @@
             <th scope="col">Название книги</th>
             <th scope="col">Издательство</th>
             <th scope="col">ФИО студента</th>
-            <th scope="col">Дата выдачи</th>
+            <th scope="col" onclick="sortTableByDate()" style="cursor: pointer">Дата выдачи</th>
             <th scope="col">Дата сдачи</th>
             <th scope="col">Действия</th>
         </tr>
@@ -89,6 +85,21 @@
     </div>
 
     <script type="text/javascript">
+        function sortTableByDate() {
+            let table = document.getElementById("booksTable"); // Получаем таблицу по ID
+            let rows = Array.from(table.rows).slice(1); // Получаем все строки, кроме заголовка
+            let sortedRows = rows.sort((a, b) => {
+                // Извлекаем текст даты из столбца "Дата выдачи" (индекс 4)
+                let dateA = new Date(a.cells[4].innerText);
+                let dateB = new Date(b.cells[4].innerText);
+
+                return dateA - dateB; // Сортировка по возрастанию
+            });
+
+            // Удаляем текущие строки и добавляем отсортированные
+            sortedRows.forEach(row => table.appendChild(row));
+        }
+
         // Функция для сбора и подсчета дат из таблицы
         function collectIssueDates() {
             const table = document.getElementById('booksTable');  // Получаем таблицу
