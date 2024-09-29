@@ -34,13 +34,13 @@
 <div class="bg-image"
      style="background-image: url('https://i.ibb.co/KswnShX/fonstola-ru-52948.jpg'); background-repeat: no-repeat; background-size: cover;  height: 200vh">
     <!-- ; overflow: hidden -->
-    <blockquote class="blockquote text-center"><h1>Автопарк</h1></blockquote>
+    <blockquote class="blockquote text-center"><h1>«Кинотеатр»</h1></blockquote>
     <div class="row">
         <div class="col-md-8 offset-md-4">
 
             <form th:action="@{/}">
                 <label>
-                    <h4>Поиск авто:</h4>
+                    <h4>Поиск сеанса:</h4>
                     <input type="text" name="keyword" id="keyword" size="70" th:value="${keyword}" required/>
                 </label>
 
@@ -54,23 +54,23 @@
         <thead>
         <tr>
             <th scope="col">ID</th>
-            <th scope="col">Марка</th>
-            <th scope="col">ФИО владельца</th>
-            <th scope="col" onclick="sortTableByDate()" style="cursor: pointer">Год выпуска</th>
-            <th scope="col">Дата поставки на учет в автопарке</th>
+            <th scope="col">Название фильма</th>
+            <th scope="col">Киностудия</th>
+            <th scope="col" onclick="sortTableByDate()" style="cursor: pointer">Дата и время сеанса</th>
+            <th scope="col">Количество билетов на сеанс</th>
             <th scope="col">Действия</th>
         </tr>
         </thead>
         <tbody>
-        <tr th:each="auto: ${autoList}">
-            <th scope="row" class="text-white" th:text="${auto.id}">ID  отстутсвует</th>
-            <th scope="row" class="text-white" th:text="${auto.stamp}">Марка отсутствует</th>
-            <th scope="row" class="text-white" th:text="${auto.name}">ФИО владельца отсутствует</th>
-            <th scope="row" class="text-white" th:text="${auto.issueDate}">Год выпуска отсутствует</th>
-            <th scope="row" class="text-white" th:text="${auto.returnDate}">Дата поставки на учет в автопарке отсутствует</th>
+        <tr th:each="cinema: ${cinemaList}">
+            <th scope="row" class="text-white" th:text="${cinema.id}">ID  отстутсвует</th>
+            <th scope="row" class="text-white" th:text="${cinema.filmName}">Название фильма отсутствует</th>
+            <th scope="row" class="text-white" th:text="${cinema.filmStudio}">Киностудия отсутствует</th>
+            <th scope="row" class="text-white" th:text="${cinema.issueDate}">Дата и время сеанса отсутствуют</th>
+            <th scope="row" class="text-white" th:text="${cinema.tikets}">Количество билетов на сеанс отсутствует</th>
             <td>
-                <a th:href="@{'/edit/'+${auto.id}}"><button type="button" class="btn btn-info">Редактировать</button></a>
-                <a th:href="@{'/delete/'+${auto.id}}"><button type="button" class="btn btn-danger">Удалить</button></a>
+                <a th:href="@{'/edit/'+${cinema.id}}"><button type="button" class="btn btn-info">Редактировать</button></a>
+                <a th:href="@{'/delete/'+${cinema.id}}"><button type="button" class="btn btn-danger">Удалить</button></a>
             </td>
         </tr>
         </tbody>
@@ -78,7 +78,7 @@
 
     <!-- Контейнер для гистограммы -->
     <div class="container mt-5">
-        <h4 class="text-center text-white">Дата поставки на учет в автопарке</h4>
+        <h4 class="text-center text-white">Количество сеансов</h4>
         <canvas id="booksChart"></canvas> <!-- Canvas для Chart.js -->
     </div>
 
@@ -132,7 +132,7 @@
         const chartData = {
             labels: [],  // Даты будут добавлены позже
             datasets: [{
-                label: 'Количество взятых книг',
+                label: 'Количество сеансов',
                 data: [],  // Количество книг для каждой даты
                 backgroundColor: 'rgba(75, 192, 192, 0.6)',  // Цвет столбцов
                 borderColor: 'rgba(75, 192, 192, 1)',  // Цвет границы столбцов
@@ -154,7 +154,7 @@
                     beginAtZero: true,  // Начало оси Y с нуля
                     title: {
                         display: true,
-                        text: 'Количество взятых книг',
+                        text: 'Количество сеансов',
                         color: 'white'
                     },
                     ticks: {
@@ -194,7 +194,7 @@
                 let table = document.getElementById('booksTable')
                 let tBody = table.querySelector('tbody')
                 const count = tBody.querySelectorAll('tr').length;
-                document.write('Количество авто в таблице: ' + count)
+                document.write('Количество сеансов: ' + count)
             }
 
             getRowsColumn()

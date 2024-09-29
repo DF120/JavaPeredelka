@@ -6,21 +6,21 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class AutoService {
+public class CinemaService {
     @Autowired
-    private AutoRepository repo;
+    private CinemaRepository repo;
 
-    public List<Auto> listAll(String keyword) {
+    public List<Cinema> listAll(String keyword) {
         if (keyword != null) {
             return repo.search(keyword);
         }
         return repo.findAll();
     }
 
-    public void save(Auto auto) {
-        repo.save(auto);
+    public void save(Cinema cinema) {
+        repo.save(cinema);
     }
-    public Auto get(Long id) {
+    public Cinema get(Long id) {
         return repo.findById(id).get();
     }
     public void delete(Long id) {

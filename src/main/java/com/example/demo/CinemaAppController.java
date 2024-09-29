@@ -12,33 +12,33 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-public class AutoAppController  {
+public class CinemaAppController {
     @Autowired
-    private AutoService service;
+    private CinemaService service;
 
     @RequestMapping("/")
     public String viewHomePage(Model model, @Param("keyword") String keyword) {
-        List<Auto> autoList = service.listAll(keyword);
-        model.addAttribute("autoList", autoList);
+        List<Cinema> cinemaList = service.listAll(keyword);
+        model.addAttribute("cinemaList", cinemaList);
         model.addAttribute("keyword", keyword);
-        return "index_auto";
+        return "index_cinema";
     }
     @RequestMapping("/new")
-    public String showNewAutoForm(Model model) {
-        Auto auto = new Auto();
-        model.addAttribute("auto", auto);
-        return "new_auto";
+    public String showNewCinemaForm(Model model) {
+        Cinema cinema = new Cinema();
+        model.addAttribute("cinema", cinema);
+        return "new_cinema";
     }
     @RequestMapping(value = "/save", method = RequestMethod.POST)
-    public String saveAuto(@ModelAttribute("auto") Auto auto) {
-        service.save(auto);
+    public String saveAuto(@ModelAttribute("cinema") Cinema cinema) {
+        service.save(cinema);
         return "redirect:/";
     }
     @RequestMapping("/edit/{id}")
     public ModelAndView showEditAutoForm(@PathVariable(name = "id") Long id) {
-        ModelAndView mav = new ModelAndView("edit_auto");
-        Auto auto = service.get(id);
-        mav.addObject("auto", auto);
+        ModelAndView mav = new ModelAndView("edit_cinema");
+        Cinema cinema = service.get(id);
+        mav.addObject("cinema", cinema);
         return mav;
     }
     @RequestMapping("/delete/{id}")
