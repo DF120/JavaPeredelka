@@ -12,37 +12,37 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-public class BookAppController {
+public class AutoAppController  {
     @Autowired
-    private BookService service;
+    private AutoService service;
 
     @RequestMapping("/")
     public String viewHomePage(Model model, @Param("keyword") String keyword) {
-        List<Book> bookList = service.listAll(keyword);
-        model.addAttribute("bookList", bookList);
+        List<Auto> autoList = service.listAll(keyword);
+        model.addAttribute("autoList", autoList);
         model.addAttribute("keyword", keyword);
-        return "index_book";
+        return "index_auto";
     }
     @RequestMapping("/new")
-    public String showNewBookForm(Model model) {
-        Book book = new Book();
-        model.addAttribute("book", book);
-        return "new_book";
+    public String showNewAutoForm(Model model) {
+        Auto auto = new Auto();
+        model.addAttribute("auto", auto);
+        return "new_auto";
     }
     @RequestMapping(value = "/save", method = RequestMethod.POST)
-    public String saveBook(@ModelAttribute("book") Book book) {
-        service.save(book);
+    public String saveAuto(@ModelAttribute("auto") Auto auto) {
+        service.save(auto);
         return "redirect:/";
     }
     @RequestMapping("/edit/{id}")
-    public ModelAndView showEditBookForm(@PathVariable(name = "id") Long id) {
-        ModelAndView mav = new ModelAndView("edit_book");
-        Book book = service.get(id);
-        mav.addObject("book", book);
+    public ModelAndView showEditAutoForm(@PathVariable(name = "id") Long id) {
+        ModelAndView mav = new ModelAndView("edit_auto");
+        Auto auto = service.get(id);
+        mav.addObject("auto", auto);
         return mav;
     }
     @RequestMapping("/delete/{id}")
-    public String deleteBook(@PathVariable(name = "id") Long id) {
+    public String deleteAuto(@PathVariable(name = "id") Long id) {
         service.delete(id);
         return "redirect:/";
     }
