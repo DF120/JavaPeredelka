@@ -32,7 +32,7 @@
 </head>
 <body>
 <div class="bg-image"
-     style="background-image: url('https://i.ibb.co/KswnShX/fonstola-ru-52948.jpg'); background-repeat: no-repeat; background-size: cover;  height: 200vh">
+     style="background-image: url('https://a.d-cd.net/t7ARkeJNfMd8bWLzpurS0XUyT3Y-1920.jpg'); background-repeat: no-repeat; background-size: cover;  height: 200vh">
     <!-- ; overflow: hidden -->
     <blockquote class="blockquote text-center"><h1>Автопарк</h1></blockquote>
     <div class="row">
@@ -50,7 +50,7 @@
             </form>
         </div>
     </div>
-    <table id="booksTable" class="table table-striped table-hover">
+    <table id="autoTable" class="table table-striped table-hover">
         <thead>
         <tr>
             <th scope="col">ID</th>
@@ -84,12 +84,12 @@
 
     <script type="text/javascript">
         function sortTableByDate() {
-            let table = document.getElementById("booksTable"); // Получаем таблицу по ID
+            let table = document.getElementById("autoTable"); // Получаем таблицу по ID
             let rows = Array.from(table.rows).slice(1); // Получаем все строки, кроме заголовка
             let sortedRows = rows.sort((a, b) => {
                 // Извлекаем текст даты из столбца "Дата выдачи" (индекс 4)
-                let dateA = new Date(a.cells[4].innerText);
-                let dateB = new Date(b.cells[4].innerText);
+                let dateA = new Date(a.cells[3].innerText);
+                let dateB = new Date(b.cells[3].innerText);
 
                 return dateA - dateB; // Сортировка по возрастанию
             });
@@ -100,13 +100,13 @@
 
         // Функция для сбора и подсчета дат из таблицы
         function collectIssueDates() {
-            const table = document.getElementById('booksTable');  // Получаем таблицу
+            const table = document.getElementById('autoTable');  // Получаем таблицу
             const rows = table.querySelectorAll('tbody tr');  // Получаем все строки в таблице
             const dateCount = {};  // Объект для хранения дат и их количества
 
             // Проходим по каждой строке
             rows.forEach(row => {
-                const issueDate = row.querySelectorAll('th')[4].innerText;  // Получаем текст из столбца "Дата выдачи"
+                const issueDate = row.querySelectorAll('th')[3].innerText;  // Получаем текст из столбца "Дата выдачи"
 
                 if (dateCount[issueDate]) {
                     dateCount[issueDate] += 1;  // Если дата уже существует, увеличиваем количество
@@ -132,10 +132,10 @@
         const chartData = {
             labels: [],  // Даты будут добавлены позже
             datasets: [{
-                label: 'Количество взятых книг',
-                data: [],  // Количество книг для каждой даты
-                backgroundColor: 'rgba(75, 192, 192, 0.6)',  // Цвет столбцов
-                borderColor: 'rgba(75, 192, 192, 1)',  // Цвет границы столбцов
+                label: 'Количество машин',
+                data: [],
+                backgroundColor: 'rgba(75, 192, 192, 0.6)',
+                borderColor: 'rgba(75, 192, 192, 1)',
                 borderWidth: 1
             }]
         };
