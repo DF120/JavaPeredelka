@@ -32,7 +32,7 @@
 </head>
 <body>
 <div class="bg-image"
-     style="background-image: url('https://i.ibb.co/KswnShX/fonstola-ru-52948.jpg'); background-repeat: no-repeat; background-size: cover;  height: 200vh">
+     style="background-image: url('https://media-cdn.tripadvisor.com/media/photo-s/0f/6a/f1/3b/dolby-atmos-03.jpg'); background-repeat: no-repeat; background-size: cover;  height: 200vh">
     <!-- ; overflow: hidden -->
     <blockquote class="blockquote text-center"><h1>«Кинотеатр»</h1></blockquote>
     <div class="row">
@@ -88,8 +88,8 @@
             let rows = Array.from(table.rows).slice(1); // Получаем все строки, кроме заголовка
             let sortedRows = rows.sort((a, b) => {
                 // Извлекаем текст даты из столбца "Дата выдачи" (индекс 4)
-                let dateA = new Date(a.cells[4].innerText);
-                let dateB = new Date(b.cells[4].innerText);
+                let dateA = new Date(a.cells[3].innerText);
+                let dateB = new Date(b.cells[3].innerText);
 
                 return dateA - dateB; // Сортировка по возрастанию
             });
@@ -106,7 +106,7 @@
 
             // Проходим по каждой строке
             rows.forEach(row => {
-                const issueDate = row.querySelectorAll('th')[4].innerText;  // Получаем текст из столбца "Дата выдачи"
+                const issueDate = row.querySelectorAll('th')[3].innerText;  // Получаем текст из столбца "Дата выдачи"
 
                 if (dateCount[issueDate]) {
                     dateCount[issueDate] += 1;  // Если дата уже существует, увеличиваем количество
@@ -203,7 +203,7 @@
     <blockquote class="blockquote text-center">
         <a href="/new">
             <button type="button" class="btn btn-primary" data-togge="button" aria-pressed="false" autocomplete="off">
-                Добавить авто
+                Добавить сеанс
             </button>
         </a>
     </blockquote>
