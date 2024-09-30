@@ -6,28 +6,24 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class StudentService {
+public class AutoService {
     @Autowired
-    private StudentRepository repo;
+    private AutoRepository repo;
 
-    public List<Student> listAll(String keyword) {
+    public List<Auto> listAll(String keyword) {
         if (keyword != null) {
             return repo.search(keyword);
         }
         return repo.findAll();
     }
 
-    public void save(Student student) {
-        repo.save(student);
+    public void save(Auto auto) {
+        repo.save(auto);
     }
-
-    public Student get(Long id) {
+    public Auto get(Long id) {
         return repo.findById(id).get();
     }
-
     public void delete(Long id) {
         repo.deleteById(id);
     }
-
 }
-

@@ -12,44 +12,38 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-public class AppController {
-
+public class AutoAppController  {
     @Autowired
-    private StudentService service;
+    private AutoService service;
 
     @RequestMapping("/")
     public String viewHomePage(Model model, @Param("keyword") String keyword) {
-        List<Student> listStudents = service.listAll(keyword);
-        model.addAttribute("listStudents", listStudents);
+        List<Auto> autoList = service.listAll(keyword);
+        model.addAttribute("autoList", autoList);
         model.addAttribute("keyword", keyword);
-        return "index";
+        return "index_auto";
     }
-
     @RequestMapping("/new")
-    public String showNewStudentForm(Model model) {
-        Student student = new Student();
-        model.addAttribute("student", student);
-        return "new_student";
+    public String showNewAutoForm(Model model) {
+        Auto auto = new Auto();
+        model.addAttribute("auto", auto);
+        return "new_auto";
     }
-
     @RequestMapping(value = "/save", method = RequestMethod.POST)
-    public String saveStudent(@ModelAttribute("student") Student student) {
-        service.save(student);
+    public String saveAuto(@ModelAttribute("auto") Auto auto) {
+        service.save(auto);
         return "redirect:/";
     }
-
     @RequestMapping("/edit/{id}")
-    public ModelAndView showEditStudentForm(@PathVariable(name = "id") Long id) {
-        ModelAndView mav = new ModelAndView("edit_student");
-        Student student = service.get(id);
-        mav.addObject("student", student);
+    public ModelAndView showEditAutoForm(@PathVariable(name = "id") Long id) {
+        ModelAndView mav = new ModelAndView("edit_auto");
+        Auto auto = service.get(id);
+        mav.addObject("auto", auto);
         return mav;
     }
-
     @RequestMapping("/delete/{id}")
-    public String deleteStudent(@PathVariable(name = "id") Long id) {
+    public String deleteAuto(@PathVariable(name = "id") Long id) {
         service.delete(id);
         return "redirect:/";
     }
 }
-
