@@ -5,7 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 
 @SpringBootApplication
-public class WareHouseManagerApplication extends SpringBootServletInitializer{
+public class WarehouseManagerApplication extends SpringBootServletInitializer{
     public static void main(String[] args) {
-        SpringApplication.run(WareHouseManagerApplication.class, args);}
+        SpringApplication.run(WarehouseManagerApplication.class, args);}
 }

@@ -12,37 +12,37 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-public class WareHouseAppController {
+public class WarehouseAppController {
     @Autowired
-    private WareHouseService service;
+    private WarehouseService service;
 
     @RequestMapping("/")
     public String viewHomePage(Model model, @Param("keyword") String keyword) {
-        List<WareHouse> wareHouseList = service.listAll(keyword);
-        model.addAttribute("wareHouseList", wareHouseList);
+        List<Warehouse> warehouseList = service.listAll(keyword);
+        model.addAttribute("warehouseList", warehouseList);
         model.addAttribute("keyword", keyword);
-        return "index_wareHouse";
+        return "index_warehouse";
     }
     @RequestMapping("/new")
-    public String showNewWareHouseForm(Model model) {
-        WareHouse wareHouse = new WareHouse();
-        model.addAttribute("wareHouse", wareHouse);
-        return "new_wareHouse";
+    public String showNewWarehouseForm(Model model) {
+        Warehouse warehouse = new Warehouse();
+        model.addAttribute("warehouse", warehouse);
+        return "new_warehouse";
     }
     @RequestMapping(value = "/save", method = RequestMethod.POST)
-    public String saveWareHouse(@ModelAttribute("wareHouse") WareHouse wareHouse) {
-        service.save(wareHouse);
+    public String saveWarehouse(@ModelAttribute("warehouse") Warehouse warehouse) {
+        service.save(warehouse);
         return "redirect:/";
     }
     @RequestMapping("/edit/{id}")
-    public ModelAndView showEditWareHouseForm(@PathVariable(name = "id") Long id) {
-        ModelAndView mav = new ModelAndView("edit_wareHouse");
-        WareHouse wareHouse = service.get(id);
-        mav.addObject("wareHouse", wareHouse);
+    public ModelAndView showEditWarehouseForm(@PathVariable(name = "id") Long id) {
+        ModelAndView mav = new ModelAndView("edit_warehouse");
+        Warehouse warehouse = service.get(id);
+        mav.addObject("warehouse", warehouse);
         return mav;
     }
     @RequestMapping("/delete/{id}")
-    public String deleteWareHouse(@PathVariable(name = "id") Long id) {
+    public String deleteWarehouse(@PathVariable(name = "id") Long id) {
         service.delete(id);
         return "redirect:/";
     }

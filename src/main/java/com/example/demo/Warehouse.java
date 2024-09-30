@@ -12,7 +12,7 @@ import lombok.Getter;
 @Setter
 @Getter
 @Entity
-public class WareHouse {
+public class Warehouse {
     private Long id;
     private String equipment_type;
     private String equipment_group;
@@ -20,7 +20,7 @@ public class WareHouse {
     private LocalDate issueDate;
     private LocalDate returnDate;
 
-    protected WareHouse() {
+    protected Warehouse() {
     }
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
