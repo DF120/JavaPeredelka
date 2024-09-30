@@ -12,37 +12,37 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-public class BookAppController {
+public class WareHouseAppController {
     @Autowired
-    private BookService service;
+    private WareHouseService service;
 
     @RequestMapping("/")
     public String viewHomePage(Model model, @Param("keyword") String keyword) {
-        List<Book> bookList = service.listAll(keyword);
-        model.addAttribute("bookList", bookList);
+        List<WareHouse> wareHouseList = service.listAll(keyword);
+        model.addAttribute("wareHouseList", wareHouseList);
         model.addAttribute("keyword", keyword);
-        return "index_book";
+        return "index_wareHouse";
     }
     @RequestMapping("/new")
-    public String showNewBookForm(Model model) {
-        Book book = new Book();
-        model.addAttribute("book", book);
-        return "new_book";
+    public String showNewWareHouseForm(Model model) {
+        WareHouse wareHouse = new WareHouse();
+        model.addAttribute("wareHouse", wareHouse);
+        return "new_wareHouse";
     }
     @RequestMapping(value = "/save", method = RequestMethod.POST)
-    public String saveBook(@ModelAttribute("book") Book book) {
-        service.save(book);
+    public String saveWareHouse(@ModelAttribute("wareHouse") WareHouse wareHouse) {
+        service.save(wareHouse);
         return "redirect:/";
     }
     @RequestMapping("/edit/{id}")
-    public ModelAndView showEditBookForm(@PathVariable(name = "id") Long id) {
-        ModelAndView mav = new ModelAndView("edit_book");
-        Book book = service.get(id);
-        mav.addObject("book", book);
+    public ModelAndView showEditWareHouseForm(@PathVariable(name = "id") Long id) {
+        ModelAndView mav = new ModelAndView("edit_wareHouse");
+        WareHouse wareHouse = service.get(id);
+        mav.addObject("wareHouse", wareHouse);
         return mav;
     }
     @RequestMapping("/delete/{id}")
-    public String deleteBook(@PathVariable(name = "id") Long id) {
+    public String deleteWareHouse(@PathVariable(name = "id") Long id) {
         service.delete(id);
         return "redirect:/";
     }
