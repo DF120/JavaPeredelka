@@ -76,15 +76,15 @@
         </tbody>
     </table>
 
-    <!-- Контейнер для гистограммы -->
+
     <div class="container mt-5">
         <h4 class="text-center text-white">Дата поставки на учет в автопарке</h4>
-        <canvas id="booksChart"></canvas> <!-- Canvas для Chart.js -->
+        <canvas id="booksChart"></canvas>
     </div>
 
     <script type="text/javascript">
         function sortTableByDate() {
-            let table = document.getElementById("autoTable"); // Получаем таблицу по ID
+            let table = document.getElementById("autoTable");
             let rows = Array.from(table.rows).slice(1); // Получаем все строки, кроме заголовка
             let sortedRows = rows.sort((a, b) => {
                 // Извлекаем текст даты из столбца "Дата выдачи" (индекс 4)
@@ -154,7 +154,7 @@
                     beginAtZero: true,  // Начало оси Y с нуля
                     title: {
                         display: true,
-                        text: 'Количество взятых книг',
+                        text: 'Количество машин',
                         color: 'white'
                     },
                     ticks: {
