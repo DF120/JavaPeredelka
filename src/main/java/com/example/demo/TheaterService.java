@@ -4,26 +4,28 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
+import java.time.LocalDateTime;
+import java.time.LocalDate;
 @Service
-public class CinemaService {
+public class TheaterService {
     @Autowired
-    private CinemaRepository repo;
+    private TheaterRepository repo;
 
-    public List<Cinema> listAll(String keyword) {
+    public List<Theater> listAll(String keyword) {
         if (keyword != null) {
             return repo.search(keyword);
         }
         return repo.findAll();
     }
 
-    public void save(Cinema cinema) {
-        repo.save(cinema);
+    public void save(Theater theater) {
+        repo.save(theater);
     }
-    public Cinema get(Long id) {
+    public Theater get(Long id) {
         return repo.findById(id).get();
     }
     public void delete(Long id) {
         repo.deleteById(id);
     }
+    public int countByDate(LocalDateTime dateTime) {LocalDate date = dateTime.toLocalDate();return repo.countByDate(dateTime);}
 }

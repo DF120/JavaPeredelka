@@ -5,7 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 
 @SpringBootApplication
-public class CinemaManagerApplication extends SpringBootServletInitializer{
+public class TheaterManagerApplication extends SpringBootServletInitializer{
     public static void main(String[] args) {
-        SpringApplication.run(CinemaManagerApplication.class, args);}
+        SpringApplication.run(TheaterManagerApplication.class, args);}
 }
