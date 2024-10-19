@@ -48,13 +48,7 @@ public class TheaterAppController {
         service.delete(id);
         return "redirect:/";
     }
-    @RequestMapping("/countByDate")
-    public String countByDate(Model model, @Param("date") String date) {
-        LocalDateTime dateTime = LocalDateTime.parse(date);  // Преобразуем строку в LocalDateTime
-        int count = service.countByDate(dateTime);
-        model.addAttribute("count", count);
-        return "index_theater";  // Или нужная страница для отображения
-    }
+
 
 
 }

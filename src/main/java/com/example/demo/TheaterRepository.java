@@ -10,7 +10,6 @@ import java.time.LocalDateTime;
 public interface TheaterRepository extends JpaRepository<Theater, Long>{
     @Query("SELECT p FROM Theater p WHERE CONCAT(p.performanceName, ' ', p.actorCollective, ' ', p.performanceDateTime,' ', p.totalTickets, ' ',p.availableTickets,' ') LIKE %?1%")
     List<Theater> search(String keyword);
-    @Query("SELECT COUNT(p) FROM Theater p WHERE DATE(p.performanceDateTime) = :date")
-    int countByDate(@Param("date") LocalDateTime date);
+
 
 }

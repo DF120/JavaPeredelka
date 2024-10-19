@@ -27,5 +27,5 @@ public class TheaterService {
     public void delete(Long id) {
         repo.deleteById(id);
     }
-    public int countByDate(LocalDateTime dateTime) {LocalDate date = dateTime.toLocalDate();return repo.countByDate(dateTime);}
+
 }

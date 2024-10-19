@@ -32,7 +32,7 @@
 </head>
 <body>
 <div class="bg-image"
-     style="background-image: url('https://media-cdn.tripadvisor.com/media/photo-s/0f/6a/f1/3b/dolby-atmos-03.jpg'); background-repeat: no-repeat; background-size: cover;  height: 200vh">
+     style="background-image: url('https://cdn.culture.ru/images/d9a0323b-25ff-577b-8047-c822bdbe9d73'); background-repeat: no-repeat; background-size: cover;  height: 200vh">
     <!-- ; overflow: hidden -->
     <blockquote class="blockquote text-center"><h1>«Театр»</h1></blockquote>
     <div class="row">
@@ -48,12 +48,6 @@
                 <input type="button" class="btn btn-warning btn-sm" value="Очистить" id="btnClear"
                        onclick="clearSearch()"/>
             </form>
-            <form action="/countByDate" method="get">
-                <label for="date">Выберите дату:</label>
-                <input type="date" id="date" name="date">
-                <button type="submit">Показать количество спектаклей</button>
-            </form>
-            <p>Количество спектаклей за выбранный день: ${count}</p>
 
         </div>
     </div>
@@ -84,7 +78,6 @@
         </tr>
         </tbody>
     </table>
-gist
     <!-- Контейнер для гистограммы -->
     <div class="container mt-5">
         <h4 class="text-center text-white">Количество сеансов</h4>
@@ -115,7 +108,9 @@ gist
 
             // Проходим по каждой строке
             rows.forEach(row => {
-                const issueDate = row.querySelectorAll('th')[3].innerText;  // Получаем текст из столбца "Дата выдачи"
+                let issueDate = row.querySelectorAll('th')[3].innerText;  // Получаем текст из столбца "Дата и время сеанса"
+                issueDate = issueDate.split("T")[0];
+                console.log(issueDate);
 
                 if (dateCount[issueDate]) {
                     dateCount[issueDate] += 1;  // Если дата уже существует, увеличиваем количество

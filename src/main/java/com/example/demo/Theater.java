@@ -20,7 +20,6 @@ public class Theater {
     private String totalTickets;
     private String availableTickets;
 
-
     protected Theater() {
     }
 
@@ -29,7 +28,6 @@ public class Theater {
     public Long getId() {
         return id;
     }
-
 
     @Override
     public String toString() {
