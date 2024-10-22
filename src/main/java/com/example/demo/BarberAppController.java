@@ -10,37 +10,37 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
-import java.time.LocalDate;
+import jakarta.persistence.Id;
 import java.time.LocalDateTime;
 
 @Controller
-public class TheaterAppController {
+public class BarberAppController {
     @Autowired
-    private TheaterService service;
+    private BarberService service;
 
     @RequestMapping("/")
     public String viewHomePage(Model model, @Param("keyword") String keyword) {
-        List<Theater> theaterList = service.listAll(keyword);
-        model.addAttribute("theaterList", theaterList);
+        List<Barber> barberList = service.listAll(keyword);
+        model.addAttribute("barberList", barberList);
         model.addAttribute("keyword", keyword);
-        return "index_theater";
+        return "index_barber";
     }
     @RequestMapping("/new")
     public String showNewTheaterForm(Model model) {
-        Theater theater = new Theater();
-        model.addAttribute("theater", theater);
+        Barber barber = new Barber();
+        model.addAttribute("barber", barber);
         return "new_theater";
     }
     @RequestMapping(value = "/save", method = RequestMethod.POST)
-    public String saveTheater(@ModelAttribute("theater") Theater theater) {
-        service.save(theater);
+    public String saveTheater(@ModelAttribute("barber") Barber barber) {
+        service.save(barber);
         return "redirect:/";
     }
     @RequestMapping("/edit/{id}")
     public ModelAndView showEditTheaterForm(@PathVariable(name = "id") Long id) {
-        ModelAndView mav = new ModelAndView("edit_theater");
-        Theater theater = service.get(id);
-        mav.addObject("theater", theater);
+        ModelAndView mav = new ModelAndView("edit_barber");
+        Barber barber = service.get(id);
+        mav.addObject("barber", barber);
         return mav;
     }
     @RequestMapping("/delete/{id}")
@@ -48,7 +48,4 @@ public class TheaterAppController {
         service.delete(id);
         return "redirect:/";
     }
-
-
-
 }
