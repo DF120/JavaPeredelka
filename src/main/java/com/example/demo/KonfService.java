@@ -6,21 +6,21 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class BookService {
+public class KonfService {
     @Autowired
-    private BookRepository repo;
+    private KonfRepository repo;
 
-    public List<Book> listAll(String keyword) {
+    public List<Konf> listAll(String keyword) {
         if (keyword != null) {
             return repo.search(keyword);
         }
         return repo.findAll();
     }
 
-    public void save(Book book) {
-        repo.save(book);
+    public void save(Konf konf) {
+        repo.save(konf);
     }
-    public Book get(Long id) {
+    public Konf get(Long id) {
         return repo.findById(id).get();
     }
     public void delete(Long id) {

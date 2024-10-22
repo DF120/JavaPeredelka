@@ -12,33 +12,33 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-public class BookAppController {
+public class KonfAppController {
     @Autowired
-    private BookService service;
+    private KonfService service;
 
     @RequestMapping("/")
     public String viewHomePage(Model model, @Param("keyword") String keyword) {
-        List<Book> bookList = service.listAll(keyword);
-        model.addAttribute("bookList", bookList);
+        List<Konf> konfList = service.listAll(keyword);
+        model.addAttribute("konfList", konfList);
         model.addAttribute("keyword", keyword);
-        return "index_book";
+        return "index_konf";
     }
     @RequestMapping("/new")
     public String showNewBookForm(Model model) {
-        Book book = new Book();
-        model.addAttribute("book", book);
-        return "new_book";
+        Konf konf = new Konf();
+        model.addAttribute("konf", konf);
+        return "new_konf";
     }
     @RequestMapping(value = "/save", method = RequestMethod.POST)
-    public String saveBook(@ModelAttribute("book") Book book) {
-        service.save(book);
+    public String saveBook(@ModelAttribute("konf") Konf konf) {
+        service.save(konf);
         return "redirect:/";
     }
     @RequestMapping("/edit/{id}")
     public ModelAndView showEditBookForm(@PathVariable(name = "id") Long id) {
-        ModelAndView mav = new ModelAndView("edit_book");
-        Book book = service.get(id);
-        mav.addObject("book", book);
+        ModelAndView mav = new ModelAndView("edit_konf");
+        Konf konf = service.get(id);
+        mav.addObject("konf", konf);
         return mav;
     }
     @RequestMapping("/delete/{id}")
