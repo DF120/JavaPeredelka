@@ -54,22 +54,24 @@
         <thead>
         <tr>
             <th scope="col">ID</th>
-            <th scope="col">Вид техники</th>
-            <th scope="col">Группа техники</th>
-            <th scope="col">ФИО водителя, увозящего технику со склад</th>
-            <th scope="col" onclick="sortTableByDate()" style="cursor: pointer">Дата ввоза на склад</th>
-            <th scope="col">Дата вывоза со склада</th>
+            <th scope="col">Название груза</th>
+            <th scope="col">Содержимое груза</th>
+            <th scope="col">Город отправки груза</th>
+            <th scope="col">Город прибытия груза</th>
+            <th scope="col" onclick="sortTableByDate()" style="cursor: pointer">Дата отправки груза</th>
+            <th scope="col">Дата прибытия груза</th>
             <th scope="col">Действия</th>
         </tr>
         </thead>
         <tbody>
         <tr th:each="wareHouse: ${warehouseList}">
-            <th scope="row" class="text-white" th:text="${wareHouse.id}">ID книги отстутсвует</th>
-            <th scope="row" class="text-white" th:text="${wareHouse.equipment_type}">Название книги отсутствует</th>
-            <th scope="row" class="text-white" th:text="${wareHouse.equipment_group}">Издательство книги отсутствует</th>
-            <th scope="row" class="text-white" th:text="${wareHouse.name}">ФИО студента отсутствует</th>
-            <th scope="row" class="text-white" th:text="${wareHouse.issueDate}">Дата выдачи книги отсутствует</th>
-            <th scope="row" class="text-white" th:text="${wareHouse.returnDate}">Дата cдачи книги отсутствует</th>
+            <th scope="row" class="text-white" th:text="${wareHouse.id}">ID отстутсвует</th>
+            <th scope="row" class="text-white" th:text="${wareHouse.equipment_name}">Название груза отсутствует</th>
+            <th scope="row" class="text-white" th:text="${wareHouse.equipment_group}">Содержимое груза отсутствует</th>
+            <th scope="row" class="text-white" th:text="${wareHouse.issueCity}">Город отправки груза</th>
+            <th scope="row" class="text-white" th:text="${wareHouse.arrivalCity}">Город прибытия груза</th>
+            <th scope="row" class="text-white" th:text="${wareHouse.issueDate}">Дата отправки груза отсутствует</th>
+            <th scope="row" class="text-white" th:text="${wareHouse.arrivalDate}">Дата прибытия груза отсутствует</th>
             <td>
                 <a th:href="@{'/edit/'+${wareHouse.id}}"><button type="button" class="btn btn-info">Редактировать</button></a>
                 <a th:href="@{'/delete/'+${wareHouse.id}}"><button type="button" class="btn btn-danger">Удалить</button></a>
@@ -90,8 +92,8 @@
             let rows = Array.from(table.rows).slice(1); // Получаем все строки, кроме заголовка
             let sortedRows = rows.sort((a, b) => {
                 // Извлекаем текст даты из столбца "Дата выдачи" (индекс 4)
-                let dateA = new Date(a.cells[4].innerText);
-                let dateB = new Date(b.cells[4].innerText);
+                let dateA = new Date(a.cells[5].innerText);
+                let dateB = new Date(b.cells[5].innerText);
 
                 return dateA - dateB; // Сортировка по возрастанию
             });
@@ -108,7 +110,7 @@
 
             // Проходим по каждой строке
             rows.forEach(row => {
-                const issueDate = row.querySelectorAll('th')[4].innerText;  // Получаем текст из столбца "Дата выдачи"
+                const issueDate = row.querySelectorAll('th')[5].innerText;  // Получаем текст из столбца "Дата выдачи"
 
                 if (dateCount[issueDate]) {
                     dateCount[issueDate] += 1;  // Если дата уже существует, увеличиваем количество

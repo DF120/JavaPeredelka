@@ -14,11 +14,12 @@ import lombok.Getter;
 @Entity
 public class Warehouse {
     private Long id;
-    private String equipment_type;
+    private String equipment_name;
     private String equipment_group;
-    private String name;
+    private String issueCity;
+    private String arrivalCity;
     private LocalDate issueDate;
-    private LocalDate returnDate;
+    private LocalDate arrivalDate;
 
     protected Warehouse() {
     }
@@ -30,6 +31,6 @@ public class Warehouse {
 
     @Override
     public String toString() {
-        return "warehouse [id=" + id + ", equipment_type=" + equipment_type + ", equipment_group=" + equipment_group + ", name=" + name + ", issueDate=" + issueDate + ", returnDate=" + returnDate + "]";
+        return "warehouse [id=" + id + ", equipment_name=" + equipment_name + ", equipment_group=" + equipment_group + ", issueCity=" + issueCity + ", arrivalCity=" + arrivalCity+ ", issueDate=" + issueDate + ", arrivalDate=" + arrivalDate + "]";
     }
 }
