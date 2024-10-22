@@ -10,46 +10,45 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Controller
-public class AppController {
-
+public class TheaterAppController {
     @Autowired
-    private StudentService service;
+    private TheaterService service;
 
     @RequestMapping("/")
     public String viewHomePage(Model model, @Param("keyword") String keyword) {
-        List<Student> listStudents = service.listAll(keyword);
-        model.addAttribute("listStudents", listStudents);
+        List<Theater> theaterList = service.listAll(keyword);
+        model.addAttribute("theaterList", theaterList);
         model.addAttribute("keyword", keyword);
-        return "index";
+        return "index_theater";
     }
-
     @RequestMapping("/new")
-    public String showNewStudentForm(Model model) {
-        Student student = new Student();
-        model.addAttribute("student", student);
-        return "new_student";
+    public String showNewTheaterForm(Model model) {
+        Theater theater = new Theater();
+        model.addAttribute("theater", theater);
+        return "new_theater";
     }
-
     @RequestMapping(value = "/save", method = RequestMethod.POST)
-    public String saveStudent(@ModelAttribute("student") Student student) {
-        service.save(student);
+    public String saveTheater(@ModelAttribute("theater") Theater theater) {
+        service.save(theater);
         return "redirect:/";
     }
-
     @RequestMapping("/edit/{id}")
-    public ModelAndView showEditStudentForm(@PathVariable(name = "id") Long id) {
-        ModelAndView mav = new ModelAndView("edit_student");
-        Student student = service.get(id);
-        mav.addObject("student", student);
+    public ModelAndView showEditTheaterForm(@PathVariable(name = "id") Long id) {
+        ModelAndView mav = new ModelAndView("edit_theater");
+        Theater theater = service.get(id);
+        mav.addObject("theater", theater);
         return mav;
     }
-
     @RequestMapping("/delete/{id}")
-    public String deleteStudent(@PathVariable(name = "id") Long id) {
+    public String deleteTheater(@PathVariable(name = "id") Long id) {
         service.delete(id);
         return "redirect:/";
     }
-}
 
+
+
+}
